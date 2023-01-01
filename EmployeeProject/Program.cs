@@ -1,4 +1,5 @@
 using Employee_migration.Data;
+using EmployeeProject.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ builder.Services.AddDbContext<EmployeeContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeDbConnection"));
 });
+
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 var app = builder.Build();
 
